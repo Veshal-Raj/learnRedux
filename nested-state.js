@@ -1,4 +1,6 @@
 import redux from 'redux'
+import {produce} from 'immer'
+
 
 const initalState = {
     name: 'Veshal',
@@ -21,13 +23,16 @@ const updateStreet = (street) => {
 const reducer = (state = initalState, action) => {
     switch (action.type) {
         case STREET_UPDATED:
-            return {
-                ...state,
-                address: {
-                    ...state.address,
-                     street: action.payload
-                    },
-                }
+            // return {
+            //     ...state,
+            //     address: {
+            //         ...state.address,
+            //          street: action.payload
+            //         },
+            //     }
+            return produce(state, (draft) => {
+                draft.address.street = action.payload
+            })
         default: {
             return state
         }
