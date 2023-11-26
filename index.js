@@ -35,12 +35,15 @@ function restockIcecream(qty = 1) {
     }
 }
 
-const initialState = {
+const initialCakeState = {
     numberOfCakes : 10,
+}
+
+const initialIcecreamState = {
     numberofIcecreams : 10
 }
 
-const reducer = (state=initialState, action)=> {
+const cakeReducer = (state=initialCakeState, action)=> {
     switch(action.type){
         case CAKE_ORDERED:
             return {
@@ -52,6 +55,14 @@ const reducer = (state=initialState, action)=> {
                 ...state,
                   numberOfCakes: state.numberOfCakes + action.payload
             }
+        default:
+            return state
+    }
+}
+
+
+const icecreamReducer = (state=initialIcecreamState, action)=> {
+    switch(action.type){
         case ICECREAM_ORDERED: 
         return {
             ...state,
